@@ -52,5 +52,8 @@
       <Text layoutX="681.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Рейтинг" wrappingWidth="59.29557228088379" />
       <TextField fx:id="names1" layoutX="1005.0" layoutY="164.0" prefHeight="26.0" prefWidth="171.0" />
       <Text layoutX="926.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название" wrappingWidth="66.29557122290134" />
+      <TextArea fx:id="description1" layoutX="844.0" layoutY="291.0" prefHeight="239.0" prefWidth="327.0" wrapText="true" />
+      <TextArea fx:id="actors1" layoutX="663.0" layoutY="296.0" prefHeight="76.0" prefWidth="171.0" wrapText="true" />
+      <Text layoutX="663.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Актеры" wrappingWidth="59.29557228088379" />
    </children>
 </AnchorPane>
