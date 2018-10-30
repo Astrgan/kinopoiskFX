@@ -3,11 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1185.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1185.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
    <children>
       <ImageView fx:id="poster" fitHeight="259.0" fitWidth="183.0" layoutX="14.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="378.0" />
       <TextArea fx:id="description" layoutX="291.0" layoutY="290.0" prefHeight="239.0" prefWidth="327.0" wrapText="true" AnchorPane.leftAnchor="291.0" AnchorPane.topAnchor="290.0" />
@@ -40,20 +42,26 @@
       <TextField fx:id="jsonPath" layoutX="74.0" layoutY="82.0" prefHeight="26.0" prefWidth="400.0" promptText="jsonformatter.txt" AnchorPane.leftAnchor="74.0" AnchorPane.topAnchor="82.0" />
       <Text layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File JSON" wrappingWidth="66.29556649923325" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="89.431640625" />
       <Button layoutX="483.0" layoutY="85.0" mnemonicParsing="false" onAction="#chooseJSON" text="choose" AnchorPane.leftAnchor="483.0" AnchorPane.topAnchor="85.0" />
-      <TextField fx:id="year1" layoutX="1004.0" layoutY="200.0" prefHeight="26.0" prefWidth="171.0" />
-      <Text layoutX="930.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год:" wrappingWidth="32.29557228088379" />
-      <TextField fx:id="country1" layoutX="1004.0" layoutY="237.0" prefHeight="26.0" prefWidth="171.0" />
-      <Text layoutX="928.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Страны" wrappingWidth="59.295571222901344" />
-      <TextField fx:id="genres1" layoutX="747.0" layoutY="162.0" prefHeight="26.0" prefWidth="171.0" />
-      <Text layoutX="680.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Жанры" wrappingWidth="49.29557228088379" />
-      <TextField fx:id="writer1" layoutX="748.0" layoutY="201.0" prefHeight="26.0" prefWidth="171.0" />
-      <Text layoutX="679.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Режисер" wrappingWidth="66.29556649923325" />
-      <TextField fx:id="rating1" layoutX="747.0" layoutY="240.0" prefHeight="26.0" prefWidth="171.0" />
-      <Text layoutX="681.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Рейтинг" wrappingWidth="59.29557228088379" />
-      <TextField fx:id="names1" layoutX="1005.0" layoutY="164.0" prefHeight="26.0" prefWidth="171.0" />
-      <Text layoutX="926.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название" wrappingWidth="66.29557122290134" />
+      <TextField fx:id="year1" layoutX="986.0" layoutY="200.0" prefHeight="26.0" prefWidth="171.0" />
+      <Text layoutX="912.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год:" wrappingWidth="32.29557228088379" />
+      <TextField fx:id="country1" layoutX="986.0" layoutY="237.0" prefHeight="26.0" prefWidth="171.0" />
+      <Text layoutX="910.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Страны" wrappingWidth="59.295571222901344" />
+      <TextField fx:id="genres1" layoutX="729.0" layoutY="162.0" prefHeight="26.0" prefWidth="171.0" />
+      <Text layoutX="662.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Жанры" wrappingWidth="49.29557228088379" />
+      <TextField fx:id="writer1" layoutX="730.0" layoutY="201.0" prefHeight="26.0" prefWidth="171.0" />
+      <Text layoutX="661.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Режисер" wrappingWidth="66.29556649923325" />
+      <TextField fx:id="rating1" layoutX="729.0" layoutY="240.0" prefHeight="26.0" prefWidth="171.0" />
+      <Text layoutX="663.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Рейтинг" wrappingWidth="59.29557228088379" />
+      <TextField fx:id="names1" layoutX="987.0" layoutY="164.0" prefHeight="26.0" prefWidth="171.0" />
+      <Text layoutX="908.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название" wrappingWidth="66.29557122290134" />
       <TextArea fx:id="description1" layoutX="844.0" layoutY="291.0" prefHeight="239.0" prefWidth="327.0" wrapText="true" />
       <TextArea fx:id="actors1" layoutX="663.0" layoutY="296.0" prefHeight="76.0" prefWidth="171.0" wrapText="true" />
       <Text layoutX="663.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Актеры" wrappingWidth="59.29557228088379" />
+      <Line endX="-23.0" endY="237.0" layoutX="664.0" layoutY="345.0" startX="-23.0" startY="-186.0">
+         <effect>
+            <Shadow height="206.31" radius="51.8375" width="3.04" />
+         </effect>
+      </Line>
+      <Button fx:id="btnKPUpdate" layoutX="525.0" layoutY="176.0" mnemonicParsing="false" onAction="#KPUpdate" prefHeight="49.0" prefWidth="83.0" text="KPUpdate" />
    </children>
 </AnchorPane>

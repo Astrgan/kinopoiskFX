@@ -15,8 +15,8 @@ public class Film
     public String title_en;
     public String added_at;
     public String description;
-    public String directors;
-
+    public String[] directors;
+    public Film material_data;
     public String kinopoisk_id;
     public String iframe_url;
     public boolean flag = true;
