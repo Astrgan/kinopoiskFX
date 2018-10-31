@@ -143,7 +143,7 @@ public class Controller implements Initializable {
 
     void getJSON(String path){
         parserJson = new MoonwalkParserFilm(path);
-
+        System.out.println("Size: " + parserJson.listFilms.size());
         for (; num < parserJson.listFilms.size(); num++) {
             Film film = parserJson.listFilms.get(num);
             System.out.println("parse next");
@@ -243,7 +243,7 @@ public class Controller implements Initializable {
 
         chooser.setTitle("Open Resource File");
 //        path.setText("/var/www/html/films");
-        path.setText("C:\\Apache24\\films\\films6");
+        path.setText("C:\\Apache24\\films\\films 7");
         jsonPath.setText("D:\\movies_foreign.json");
 
 

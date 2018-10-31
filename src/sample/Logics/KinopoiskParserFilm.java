@@ -159,7 +159,7 @@ public class KinopoiskParserFilm {
     public void getImage(String strURL){
         try{
 
-            boolean backgroundLoading = true;
+            boolean backgroundLoading = false;
 
             image = new Image(strURL, backgroundLoading);
 
