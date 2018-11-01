@@ -3,13 +3,12 @@ package sample;
 import com.sun.deploy.util.StringUtils;
 
 
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -37,6 +36,10 @@ public class Controller2 implements Initializable{
     int num = 130;
     File dir;
     PosterParser posterParser;
+
+    @FXML
+    private Label labelNum;
+
 
     @FXML
     private ImageView poster1;
@@ -113,11 +116,16 @@ public class Controller2 implements Initializable{
     private KinopoiskParserFilm filmParser;
     private Film film;
     DirectoryChooser chooser = new DirectoryChooser();
+    private boolean flagLoop = true;
+
 
     @FXML
     void PrevFilm(ActionEvent event) {
         film = parserJson.listFilms.get(--num);
         showFilm(film);
+        labelNum.setText("num: " + num);
+
+
     }
 
     @FXML
@@ -136,29 +144,52 @@ public class Controller2 implements Initializable{
 
     @FXML
     void load(ActionEvent event) {
+
+        if (flagLoop){
+            flagLoop = false;
+            btnLoad.setText("Stop");
+        }else {
+            flagLoop = true;
+            return;
+        }
+
         posterParser = new PosterParser();
 
-        if(loadAll.isSelected()){
-            superLoad();
-        }else {
-            try {
-                num = Integer.parseInt(Files.readAllLines(Paths.get("num.txt")).get(0));
-                System.out.println("num: " + num);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            parserJson = new MoonwalkParserFilm(jsonPath.getText());
+        try {
+            num = Integer.parseInt(Files.readAllLines(Paths.get("num.txt")).get(0));
 
-            film = parserJson.listFilms.get(num);
-            showFilm(parserJson.listFilms.get(num));
+            System.out.println("num: " + num);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        parserJson = new MoonwalkParserFilm(jsonPath.getText());
+
+        if(loadAll.isSelected()) {
+
+            Service<Void> service = new Service<Void>() {
+                @Override
+                protected Task<Void> createTask() {
+                    return new Task<Void>() {
+                        @Override
+                        protected Void call() throws Exception {
+                            superLoad();
+                            return null;
+                        }
+                    };
+                }
+            };
+            service.start();
 
         }
+        film = parserJson.listFilms.get(num);
+        showFilm(parserJson.listFilms.get(num));
+        labelNum.setText("num: " + num);
+
+
         
     }
     
     void showFilm(Film film){
-
-
 
         names1.setText(film.title_ru + " / " + film.title_en);
         if(film.material_data != null && film.material_data.genres != null && film.material_data.genres.length != 0 ) genres1.setText(String.join(", ", film.material_data.genres));
@@ -171,23 +202,29 @@ public class Controller2 implements Initializable{
 
         String url = posterParser.getPoster(film.title_ru, film.title_en);
 
-        if (url != null){
+        if (!loadAll.isSelected() && url != null){
             try(InputStream in = new URL(url).openStream()){
-                Files.copy(in, Paths.get("images/image.jpg"));
+                Files.copy(in, Paths.get("posters/image.jpg"));
             }catch (Exception e){
                 e.printStackTrace();
             }
-            File file = new File("images/image.jpg");
+            File file = new File("posters/image.jpg");
             try {
                 poster1.setImage(new Image(file.toURI().toURL().toString()));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+        }else {
+            System.out.println("alter");
+            File file = new File("posters/image"+num+".jpg");
+
+            try {
+                poster1.setImage(new Image(file.toURI().toURL().toString()));
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
         }
-
-
-
-
 
         showSavedFilm(film);
 
@@ -208,9 +245,24 @@ public class Controller2 implements Initializable{
     }
 
     void superLoad(){
-        for (Film film: parserJson.listFilms) {
 
+        for(int i = num; i<parserJson.listFilms.size(); i++){
+            if (flagLoop) break;
+            Film film = parserJson.listFilms.get(i);
+
+            String url = posterParser.getPoster(film.title_ru, film.title_en);
+
+            if (url != null){
+                try(InputStream in = new URL(url).openStream()){
+                    Files.copy(in, Paths.get("posters/image"+i+".jpg"));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
         }
+
+
     }
 
     void showSavedFilm(Film film){
@@ -249,6 +301,7 @@ public class Controller2 implements Initializable{
     void nextFilm(ActionEvent event) {
         film = parserJson.listFilms.get(++num);
         showFilm(film);
+        labelNum.setText("num: " + num);
     }
 
     @FXML
@@ -263,7 +316,7 @@ public class Controller2 implements Initializable{
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
-        path.setText("C:\\Apache24\\films\\films 7");
-        jsonPath.setText("D:\\movies_foreign.json");
+        path.setText("/Users/alex/OtherForDevelopment/films8");
+        jsonPath.setText("/Users/alex/Downloads/drive-download-20181027T024742Z-001/movies_foreign.json");
     }
 }

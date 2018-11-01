@@ -25,7 +25,7 @@ public class PosterParser {
             //set HTTP proxy port to 8081
             System.setProperty("https.proxyPort", "8081");
 
-            doc = Jsoup.parse(new File("C:\\Users\\vasilev_av\\Documents\\MyJob\\д posters.html"), "UTF-8", "http://example.com/");
+            doc = Jsoup.parse(new File("/Users/alex/Documents/Development/posters/д posters.html"), "UTF-8", "http://example.com/");
 
             elements = doc.select("div[class=posters-item posters-item-tile]");
 
@@ -42,7 +42,7 @@ public class PosterParser {
             Elements elementTitleEn =  element.getElementsByClass("poster-title-eng");
             Elements elementTitle =  element.getElementsByClass("poster-title");
 
-            if (elementTitle.text().equals(nameRu)) {
+            if (elementTitle.text().equals(nameRu) || elementTitleEn.text().contains(nameEn)) {
                 System.out.println(elementTitleEn.text());
                 System.out.println(elementTitle.text());
                 Elements elementTitleImage = element.getElementsByClass("image-shadow-poster posters__image");
@@ -54,13 +54,6 @@ public class PosterParser {
                 return strURL;
             }
 
-
-
-            if (elementTitleEn.text().contains("The Savages")) {
-                System.out.println(elementTitleEn.text());
-                Elements elementTitleImage = element.getElementsByClass("image-shadow-poster posters__image");
-                System.out.println(elementTitleImage.select("img").first().attr("src"));
-            }
 
 
 
