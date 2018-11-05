@@ -38,6 +38,19 @@ public class KinopoiskParserFilm {
         else return false;
 
     }
+
+    public void setParam(String name, String writer, String countries, String year, String genres, Image image, String description, String rating, String actors) {
+        this.name = name;
+        this.writer = writer;
+        this.countries = countries;
+        this.year = year;
+        this.genres = genres;
+        this.image = image;
+        this.description = description;
+        this.rating = rating;
+        this.actors = actors;
+    }
+
     public boolean start (String kinoURL) {
         System.out.println("url: " + kinoURL);
 
@@ -204,7 +217,7 @@ public class KinopoiskParserFilm {
 
         ){
             frating.write(rating);
-            fpremiere.write(premiere);
+            //fpremiere.write(premiere);
             factors.write(actors);
             fcountries.write(countries);
             fdescription.write(description);
@@ -213,8 +226,8 @@ public class KinopoiskParserFilm {
             fwriters.write(writer);
             fyear.write(year);
             iframe.write(iframeCode);
-            kinopoisk_id.write(kinopoiskID);
-            fdocument.write(doc.select("body").html());
+            //kinopoisk_id.write(kinopoiskID);
+           // fdocument.write(doc.select("body").html());
 
             File image = new File(dir.getAbsolutePath().toString() + "/image.png");
             BufferedImage bImage = SwingFXUtils.fromFXImage(this.image, null);

@@ -311,7 +311,13 @@ public class Controller2 implements Initializable{
 
     @FXML
     void saveAll(ActionEvent event) {
+        File files = new File("posters");
 
+        for (File file: files.listFiles()) {
+            Film film = parserJson.listFilms.get(Integer.parseInt(file.getName().substring(4,file.getName().indexOf('.'))));
+            KinopoiskParserFilm filmParser = new KinopoiskParserFilm();
+            filmParser.setParam(film.name, film.writer, film.countries, film.year, film.genres, film.image, film.description, film.rating, film.actors);
+        }
     }
 
     @Override
