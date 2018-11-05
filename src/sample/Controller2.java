@@ -316,7 +316,7 @@ public class Controller2 implements Initializable{
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
-        path.setText("/Users/alex/OtherForDevelopment/films8");
-        jsonPath.setText("/Users/alex/Downloads/drive-download-20181027T024742Z-001/movies_foreign.json");
+        path.setText("E:\\films8");
+        jsonPath.setText("E:\\movies_foreign.json");
     }
 }
