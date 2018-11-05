@@ -229,10 +229,10 @@ public class KinopoiskParserFilm {
             //kinopoisk_id.write(kinopoiskID);
            // fdocument.write(doc.select("body").html());
 
-            File image = new File(dir.getAbsolutePath().toString() + "/image.png");
+            File image = new File(dir.getAbsolutePath().toString() + "/image.jpg");
             BufferedImage bImage = SwingFXUtils.fromFXImage(this.image, null);
             try {
-                ImageIO.write(bImage, "png", image);
+                ImageIO.write(bImage, "jpg", image);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
