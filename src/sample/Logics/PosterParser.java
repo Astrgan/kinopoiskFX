@@ -26,7 +26,7 @@ public class PosterParser {
 
             //set HTTP proxy port to 8081
             System.setProperty("https.proxyPort", "8081");
-            File htmlFolder = new File("E:\\kinopoiskFX\\filmsSitePoster");
+            File htmlFolder = new File("filmsSitePoster");
 
             for (File file: htmlFolder.listFiles() ) {
                 
@@ -48,7 +48,7 @@ public class PosterParser {
                 Elements elementTitleEn =  element.getElementsByClass("poster-title-eng");
                 Elements elementTitle =  element.getElementsByClass("poster-title");
 
-                if (elementTitle.text().equals(nameRu) || elementTitleEn.text().contains(nameEn)) {
+                if (elementTitle.text().equals(nameRu) || elementTitleEn.text().equals(nameEn)) {
                     System.out.println(elementTitleEn.text());
                     System.out.println(elementTitle.text());
                     Elements elementTitleImage = element.getElementsByClass("image-shadow-poster posters__image");

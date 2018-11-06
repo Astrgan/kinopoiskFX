@@ -199,6 +199,16 @@ public class KinopoiskParserFilm {
         saveFilm();
     }
 
+    public void saveImage(String path){
+        File image = new File(path);
+        BufferedImage bImage = SwingFXUtils.fromFXImage(this.image, null);
+        try {
+            ImageIO.write(bImage, "jpg", image);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void saveFilm(){
         try (
 

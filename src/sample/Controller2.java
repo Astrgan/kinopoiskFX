@@ -242,6 +242,16 @@ public class Controller2 implements Initializable{
         poster.setImage(parser.image);
 
 
+    }void pause(int time){
+
+        try {
+            for (int i=0; i<time; i++) {
+                if (flagLoop) break;
+                Thread.sleep(999+1);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     void superLoad(){
@@ -259,6 +269,11 @@ public class Controller2 implements Initializable{
                     e.printStackTrace();
                 }
 
+            }else{
+                KinopoiskParserFilm kinopoiskParserFilm = new KinopoiskParserFilm();
+                kinopoiskParserFilm.start("https://www.kinopoisk.ru/film/" + film.kinopoisk_id, film.iframe_url, film.kinopoisk_id);
+                kinopoiskParserFilm.saveImage("posters/image"+i+".jpg");
+                pause(10);
             }
         }
 
@@ -316,13 +331,13 @@ public class Controller2 implements Initializable{
         for (File file: files.listFiles()) {
             Film film = parserJson.listFilms.get(Integer.parseInt(file.getName().substring(4,file.getName().indexOf('.'))));
             KinopoiskParserFilm filmParser = new KinopoiskParserFilm();
-            filmParser.setParam(film.name, film.writer, film.countries, film.year, film.genres, film.image, film.description, film.rating, film.actors);
+            //*filmParser.setParam(film.name, film.writer, film.countries, film.year, film.genres, film.image, film.description, film.rating, film.actors);
         }
     }
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
-        path.setText("E:\\films8");
-        jsonPath.setText("E:\\movies_foreign.json");
+        path.setText("D:\\Development\\films8");
+        jsonPath.setText("D:\\movies_foreign.json");
     }
 }
