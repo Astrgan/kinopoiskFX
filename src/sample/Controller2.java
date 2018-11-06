@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 
 
@@ -204,7 +205,7 @@ public class Controller2 implements Initializable{
 
         if (!loadAll.isSelected() && url != null){
             try(InputStream in = new URL(url).openStream()){
-                Files.copy(in, Paths.get("posters/image.jpg"));
+                Files.copy(in, Paths.get("posters/image.jpg"), StandardCopyOption.REPLACE_EXISTING);
             }catch (Exception e){
                 e.printStackTrace();
             }
