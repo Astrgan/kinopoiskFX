@@ -331,7 +331,8 @@ public class Controller2 implements Initializable{
         for (File file: files.listFiles()) {
             Film film = parserJson.listFilms.get(Integer.parseInt(file.getName().substring(4,file.getName().indexOf('.'))));
             KinopoiskParserFilm filmParser = new KinopoiskParserFilm();
-            //*filmParser.setParam(film.name, film.writer, film.countries, film.year, film.genres, film.image, film.description, film.rating, film.actors);
+            filmParser.setParam(film.title_ru + " / " + film.title_en, String.join(", ", film.material_data.directors), String.join(", ", film.material_data.countries), film.material_data.year, String.join(", ", film.material_data.genres), new Image(file.toURI().toString()), film.material_data.description, film.material_data.kinopoisk_rating, String.join(", ", film.material_data.actors));
+            filmParser.save(path.getText());
         }
     }
 
